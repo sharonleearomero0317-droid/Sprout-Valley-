@@ -1,66 +1,631 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sprout Valley — Pre-release</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sprout Valley</title>
 <style>
-:root{--bg:#101a16;--panel:#1a2921;--panel2:#22372a;--cream:#f4f1df;--muted:#b7c7b8;--green:#9ed9a2;--gold:#f3d28a;--line:#3c5945;--red:#ff9d8c}*{box-sizing:border-box}body{margin:0;color:var(--cream);font:15px/1.45 system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(ellipse at top,#274a36 0,#14251c 48%,#0d1511 100%);min-height:100vh}header{padding:22px clamp(14px,4vw,42px) 18px;display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap;border-bottom:1px solid #385641;background:#101a16cc}.brand{display:flex;align-items:center;gap:13px}.logo{font-size:34px;background:#2d4936;border:1px solid #55785c;border-radius:16px;padding:9px}.brand h1{font-size:clamp(23px,4vw,34px);margin:0;letter-spacing:-1px}.brand p{margin:2px 0 0;color:var(--muted)}.wallet{padding:12px 18px;border:1px solid #6d8053;border-radius:14px;background:#293b28;font-weight:800;color:var(--gold);font-size:18px;white-space:nowrap}nav{position:sticky;top:0;z-index:5;display:flex;gap:7px;padding:10px clamp(10px,3vw,32px);overflow-x:auto;background:#101a16f2;border-bottom:1px solid var(--line)}nav button,.btn{border:1px solid var(--line);background:#23362a;color:var(--cream);padding:9px 13px;border-radius:10px;cursor:pointer;font:inherit;font-weight:700;white-space:nowrap}nav button.active,nav button:hover,.btn.primary{background:var(--green);color:#102017;border-color:var(--green)}button:disabled{opacity:.4;cursor:not-allowed}.wrap{max-width:1200px;margin:0 auto;padding:24px clamp(12px,3vw,30px) 50px}.hero{padding:24px;border:1px solid #4c6e50;border-radius:20px;background:linear-gradient(120deg,#2c4a34ee,#1a2b23ee);margin-bottom:18px}.hero h2{font-size:clamp(23px,4vw,35px);margin:0 0 7px}.hero p{color:var(--muted);margin:0;max-width:760px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.card{background:linear-gradient(145deg,#22372a,#19271f);border:1px solid var(--line);border-radius:16px;padding:17px;min-width:0}.card h3{margin:0 0 7px;font-size:18px}.muted{color:var(--muted)}.big{font-size:26px;font-weight:850;color:var(--gold)}.row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.row+.row{margin-top:10px}.pill{display:inline-block;border:1px solid #55775a;border-radius:99px;padding:3px 9px;font-size:12px;color:var(--green);font-weight:800}.section-title{margin:25px 0 12px;font-size:22px}.plot{min-height:160px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(#2a4833,#1a2b20);border:1px solid #55765b;border-radius:15px;padding:14px;text-align:center}.plot .crop{font-size:35px}.plot button{margin-top:8px}.plot.empty{background:linear-gradient(#243c2d,#19281f)}.progress{height:7px;border-radius:99px;background:#101b14;overflow:hidden;margin:9px 0}.progress span{display:block;height:100%;background:linear-gradient(90deg,#7fca89,#d8eaa0);width:0%;transition:width .4s}.small{font-size:13px}.price{color:var(--gold);font-weight:800}.notice{padding:13px 15px;border:1px solid #7b6b42;background:#3b3421;border-radius:12px;color:#f8e5ae;margin-bottom:14px}.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.tabs button{border:1px solid var(--line);border-radius:9px;padding:7px 10px;background:#1b2c21;color:var(--cream);cursor:pointer}.tabs button.active{background:var(--green);color:#112018}.footer{text-align:center;color:var(--muted);font-size:13px;padding:20px}.world-2{background:radial-gradient(ellipse at top,#493b5c 0,#1b2029 65%,#0d1511 100%)}.world-3{background:radial-gradient(ellipse at top,#274d68 0,#1b2633 65%,#0d1511 100%)}.world-1{background:radial-gradient(ellipse at top,#274a36 0,#14251c 48%,#0d1511 100%)}input,select{background:#101c15;color:var(--cream);border:1px solid #4c6a51;border-radius:9px;padding:9px;font:inherit;max-width:100%}.tag{font-size:12px;border-radius:6px;background:#314a37;padding:3px 7px;color:#d4f0d2}.locked{opacity:.8;border-style:dashed}.event-active{border-color:#c9a85f;box-shadow:0 0 0 1px #c9a85f44}.divider{height:1px;background:var(--line);margin:15px 0}.toast{position:fixed;right:16px;bottom:16px;z-index:10;background:#e3f1d9;color:#15231a;padding:12px 17px;border-radius:12px;font-weight:800;box-shadow:0 10px 30px #0006;display:none;max-width:90vw}@media(max-width:560px){header{align-items:flex-start}.wallet{font-size:15px}.hero{padding:18px}.wrap{padding-top:15px}}
-</style></head>
-<body class="world-1"><header><div class="brand"><div class="logo">🌱</div><div><h1>Sprout Valley</h1><p>A cozy little farming adventure <span class="pill">v2.2.0 PRE-RELEASE</span> <span class="pill" id="profileBadge">My Garden</span></p></div></div><div class="wallet">💵 $<span id="cash">100</span> Cash</div></header><nav id="nav"></nav><main class="wrap" id="app"></main><div class="footer">Sprout Valley Pre-release · Local profiles save on this browser · Made by Jedi Romero with John (Playtester) and ChatGPT (Coding Assistant)</div><div class="toast" id="toast"></div>
+:root {
+  --bg:#101722; --panel:#1b2737; --panel2:#243449;
+  --text:#edf6ff; --muted:#a8b8ca; --green:#65d89a;
+  --gold:#ffd166; --blue:#79baff; --border:#35465c;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+}
+header {
+  padding:22px 16px; text-align:center;
+  background:linear-gradient(135deg,#163d37,#20334f);
+  border-bottom:1px solid var(--border);
+}
+header h1 { margin:0 0 6px; font-size:clamp(26px,5vw,38px); }
+header p { margin:0; color:var(--muted); }
+.stats {
+  display:flex; flex-wrap:wrap; justify-content:center;
+  gap:10px; padding:14px;
+}
+.stat {
+  background:var(--panel); padding:10px 16px;
+  border:1px solid var(--border); border-radius:12px;
+  min-width:130px; text-align:center;
+}
+.stat strong { display:block; font-size:19px; }
+nav {
+  display:flex; flex-wrap:wrap; justify-content:center;
+  gap:8px; padding:10px; border-bottom:1px solid var(--border);
+  background:#141e2b; position:sticky; top:0; z-index:5;
+}
+button,select,input { font:inherit; }
+button {
+  border:1px solid var(--border); border-radius:9px;
+  padding:9px 13px; color:var(--text); background:var(--panel2);
+  cursor:pointer; transition:filter .15s,transform .15s;
+}
+button:hover { filter:brightness(1.18); }
+button:active { transform:scale(.98); }
+button:disabled { opacity:.4; cursor:not-allowed; }
+button.active { background:#285b4a; border-color:var(--green); }
+button.primary { background:#24674e; border-color:#53bd88; }
+button.gold { background:#65501f; border-color:#c5a343; }
+button.danger { background:#642e39; }
+main { max-width:1100px; padding:20px 14px 60px; margin:auto; }
+.page { display:none; }
+.page.active { display:block; }
+.panel {
+  background:var(--panel); border:1px solid var(--border);
+  border-radius:15px; padding:17px; margin-bottom:16px;
+}
+h2,h3 { margin-top:0; }
+.muted { color:var(--muted); }
+.small { font-size:13px; color:var(--muted); }
+.flex { display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
+.between { justify-content:space-between; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(145px,1fr)); gap:12px; }
+.item {
+  background:#202e40; border:1px solid var(--border);
+  padding:13px; border-radius:12px;
+}
+.item .emoji { font-size:29px; display:block; margin-bottom:5px; }
+.item h3 { font-size:16px; margin:3px 0 7px; }
+.item p { margin:4px 0; }
+.progress { height:8px; background:#111a26; border-radius:8px; overflow:hidden; margin:9px 0; }
+.progress span { display:block; height:100%; background:var(--green); }
+.cave {
+  background:radial-gradient(ellipse at top,#344054,#141a27 75%);
+  border:2px solid #45546b; border-radius:14px; padding:12px;
+  overflow:hidden;
+}
+.cave-head {
+  display:flex; flex-wrap:wrap; justify-content:space-between;
+  gap:10px; margin-bottom:12px;
+}
+.mine-grid {
+  display:grid; grid-template-columns:repeat(7,minmax(0,1fr));
+  gap:5px; max-width:620px; margin:auto;
+}
+.mine-tile {
+  aspect-ratio:1; padding:0; border-radius:7px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:clamp(17px,4vw,29px); min-width:0;
+  background:#3a4353; border:1px solid #5c687b;
+}
+.mine-tile.rock { background:linear-gradient(145deg,#515b6c,#2d3543); }
+.mine-tile.dug { background:#171f2b; border-style:dashed; color:#68788d; }
+.mine-tile.found { background:#273e4a; border-color:#6295a9; }
+.mine-tile:disabled { opacity:1; cursor:default; }
+.notice {
+  padding:11px 13px; border-radius:10px;
+  background:#172c36; border:1px solid #2c5b60; margin:12px 0;
+}
+.log {
+  max-height:190px; overflow:auto; display:flex; flex-direction:column; gap:7px;
+}
+.log div { border-bottom:1px solid var(--border); padding:6px 0; }
+.badge {
+  display:inline-block; border:1px solid var(--border);
+  border-radius:99px; padding:3px 8px; font-size:12px;
+}
+footer { text-align:center; padding:20px; color:var(--muted); font-size:13px; }
+input,select {
+  background:#111b29; border:1px solid var(--border);
+  border-radius:8px; color:var(--text); padding:9px; max-width:100%;
+}
+@media(max-width:500px) {
+  main { padding:13px 9px 40px; }
+  .panel { padding:12px; }
+  nav button { padding:8px 10px; }
+  .mine-grid { gap:3px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>🌱 Sprout Valley</h1>
+  <p>Grow your garden, explore the underground, and build your own adventure.</p>
+</header>
+
+<div class="stats">
+  <div class="stat">🌿 Farm Cash<strong id="farmCash">$100</strong></div>
+  <div class="stat">⛏️ Cash V2<strong id="mineCash">$0</strong></div>
+  <div class="stat">🌾 Harvests<strong id="harvestCount">0</strong></div>
+  <div class="stat">💎 Materials<strong id="materialCount">0</strong></div>
+</div>
+
+<nav id="navigation">
+  <button class="active" data-page="farm">🌱 Farming</button>
+  <button data-page="mining">⛏️ Mining</button>
+  <button data-page="upgrades">⬆️ Upgrades</button>
+  <button data-page="market">🛒 Market</button>
+  <button data-page="achievements">🏆 Achievements</button>
+  <button data-page="settings">⚙️ Settings</button>
+</nav>
+
+<main>
+  <section id="farm" class="page active">
+    <div class="panel">
+      <h2>🌼 Sprout Meadow</h2>
+      <p class="muted">Buy seeds, plant them in your garden, and harvest crops for Farm Cash.</p>
+      <div class="flex">
+        <label>Buy quantity
+          <input id="seedQuantity" type="number" value="1" min="1" max="9999" style="width:100px">
+        </label>
+        <button onclick="buySeeds()">Buy Carrot Seeds — $5 each</button>
+      </div>
+      <p id="seedMessage" class="small">You have 0 carrot seeds.</p>
+    </div>
+    <div class="panel">
+      <div class="flex between">
+        <h2>🪴 Your Garden</h2>
+        <span class="badge" id="plotCount">6 plots</span>
+      </div>
+      <div class="grid" id="farmPlots"></div>
+    </div>
+    <div class="panel">
+      <h3>📦 Seed Inventory</h3>
+      <p id="seedInventory">Carrot Seeds: 0</p>
+      <p class="small">Plant seeds in empty plots. Crops take time to grow.</p>
+    </div>
+  </section>
+
+  <section id="mining" class="page">
+    <div class="panel">
+      <div class="flex between">
+        <div>
+          <h2>⛏️ The Deepstone Mine</h2>
+          <p class="muted">Dig through the cave, uncover valuable materials, and sell your finds.</p>
+        </div>
+        <span class="badge">Mining Update</span>
+      </div>
+      <div class="flex">
+        <div class="stat">🪙 Mining balance<strong id="mineCash2">$0</strong></div>
+        <div class="stat">📦 Bag contents<strong id="bagCount">0</strong></div>
+        <div class="stat">⬇️ Deepest level<strong id="deepest">1</strong></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="flex between">
+        <h2>🪨 Cave Explorer</h2>
+        <span class="badge" id="levelLabel">Level 1</span>
+      </div>
+      <p class="muted">Click any stone block to dig it up. Deeper rows contain rarer materials. Each block can be mined only once.</p>
+      <div class="cave">
+        <div class="cave-head">
+          <strong>🌑 Underground</strong>
+          <span class="small">Seven blocks across</span>
+        </div>
+        <div id="mineGrid" class="mine-grid"></div>
+      </div>
+      <div class="notice" id="mineMessage">Your pickaxe is ready. Choose a block to start digging!</div>
+      <div class="flex">
+        <button class="primary" onclick="newMineLayer()">⬇️ Explore deeper</button>
+        <button onclick="sellAll()">💰 Sell all materials</button>
+        <button onclick="sellSelected()">Sell selected material</button>
+      </div>
+      <p class="small">Exploring deeper creates a new cave layer. Materials in your bag are kept when you move down.</p>
+    </div>
+
+    <div class="panel">
+      <div class="flex between">
+        <h2>🎒 Mining Inventory</h2>
+        <span class="badge">Cash V2 economy</span>
+      </div>
+      <p class="muted">Choose a material below to sell only that material, or sell everything at once.</p>
+      <div class="grid" id="mineInventory"></div>
+      <div class="flex" style="margin-top:14px">
+        <label for="sellMaterial">Material to sell</label>
+        <select id="sellMaterial"></select>
+        <button class="gold" onclick="sellSelected()">Sell selected</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>🔨 Crafting</h2>
+      <div class="notice">
+        <h3>🚧 Crafting is Coming Soon!</h3>
+        <p>Collect Iron, Stone, Coal, Gold, Diamond, and Emerald for future recipes.</p>
+        <p class="muted">Crafting is not available in this version. No materials can be turned into items yet.</p>
+      </div>
+      <button disabled>🔒 Craft items — Coming Soon</button>
+    </div>
+
+    <div class="panel">
+      <h3>📜 Mining Log</h3>
+      <div id="mineLog" class="log"><div>Welcome to the Deepstone Mine!</div></div>
+    </div>
+  </section>
+
+  <section id="upgrades" class="page">
+    <div class="panel">
+      <h2>⬆️ Garden Upgrades</h2>
+      <p class="muted">Spend Farm Cash on improvements. Mining upgrades and crafting are not included yet.</p>
+      <div id="upgradeList" class="grid"></div>
+    </div>
+  </section>
+
+  <section id="market" class="page">
+    <div class="panel">
+      <h2>🛒 Market</h2>
+      <p>Sell your harvested carrots for Farm Cash. Mining materials must be sold in the Mining tab for Cash V2.</p>
+      <div class="item">
+        <span class="emoji">🥕</span>
+        <h3>Carrot Market</h3>
+        <p>Price: $8 per carrot</p>
+        <p id="carrotMarketStock">Carrots in stock: 0</p>
+        <button class="primary" onclick="sellCarrots()">Sell all carrots</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="achievements" class="page">
+    <div class="panel">
+      <h2>🏆 Achievements</h2>
+      <div id="achievementList" class="grid"></div>
+    </div>
+  </section>
+
+  <section id="settings" class="page">
+    <div class="panel">
+      <h2>⚙️ Settings</h2>
+      <p>Your progress is saved in this browser on this device.</p>
+      <p class="muted">This is a local save, not an online account. Clearing browser data may erase your progress.</p>
+      <div class="flex">
+        <button onclick="saveGame()">💾 Save now</button>
+        <button onclick="exportSave()">📤 Export save</button>
+        <button onclick="document.getElementById('importFile').click()">📥 Import save</button>
+        <input type="file" id="importFile" accept=".json,application/json" hidden onchange="importSave(event)">
+      </div>
+      <hr style="border-color:var(--border);margin:20px 0">
+      <h3>Update Log</h3>
+      <div class="item">
+        <strong>Mining Update — v2.3.0</strong>
+        <p class="small">Added the Deepstone Mine, six collectible materials, Cash V2, material selling, deeper cave layers, mining inventory, and a Crafting Coming Soon section.</p>
+      </div>
+      <div class="item" style="margin-top:10px">
+        <strong>Sprout Valley — v2.2.0</strong>
+        <p class="small">Local save system and profile progress improvements.</p>
+      </div>
+      <div class="item" style="margin-top:10px">
+        <strong>Sprout Valley — v2.1.0</strong>
+        <p class="small">Progression balancing adjustments.</p>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>⚠️ Reset Game</h3>
+      <p class="muted">This permanently resets this browser's saved progress.</p>
+      <button class="danger" onclick="resetGame()">Reset all progress</button>
+    </div>
+  </section>
+</main>
+
+<footer>Sprout Valley • Created by Jedi Romero • Playtested by John • Coding Assistant: ChatGPT</footer>
+
 <script>
-const worlds=[{id:1,name:'Sprout Meadow',emoji:'🌿',unlock:0,desc:'A peaceful patch of land to start your garden.'},{id:2,name:'Blossom Grove',emoji:'🌸',unlock:900,desc:'Petals, bright berries, and rarer harvests.'},{id:3,name:'Crystal Highlands',emoji:'💎',unlock:18000,desc:'Glowing plants with long growing seasons.'},{id:4,name:'Astral Gardens',emoji:'🌌',unlock:null,desc:'A distant world beyond the stars. Coming soon!'}];
-const crops=[
-['turnip','Turnip','🥬',1,12,30,12],['carrot','Carrot','🥕',1,18,42,18],['berry','Wild Berry','🫐',1,25,58,25],['lettuce','Lettuce','🥬',1,30,72,32],['tomato','Tomato','🍅',1,38,90,40],['corn','Sweet Corn','🌽',1,48,118,50],['pumpkin','Pumpkin','🎃',1,70,170,70],['sunflower','Sunflower','🌻',1,85,210,85],['melon','Melon','🍈',1,100,260,100],['moonbean','Moonbean','🌙',1,125,330,125],['clover','Lucky Clover','☘️',1,145,390,145],['honeyroot','Honeyroot','🍯',1,165,460,165],['starfruit','Starfruit','⭐',1,190,540,190],['goldenrose','Golden Rose','🌹',1,220,640,220],
-['cherry','Cherry','🍒',2,250,780,250],['peach','Peach','🍑',2,280,880,280],['grape','Grapes','🍇',2,320,1020,320],['tulip','Tulip','🌷',2,350,1140,350],['blueberry','Blueberry','🫐',2,390,1280,390],['lemon','Lemon','🍋',2,430,1440,430],['coconut','Coconut','🥥',2,480,1640,480],['dragonfruit','Dragon Fruit','🐉',2,530,1850,530],['lily','Moon Lily','🪷',2,590,2100,590],['firepepper','Fire Pepper','🌶️',2,650,2380,650],['crystalberry','Crystal Berry','🔮',2,720,2700,720],['pinklotus','Pink Lotus','🪷',2,800,3100,800],['glowmushroom','Glow Mushroom','🍄',2,880,3500,880],['fairyfruit','Fairy Fruit','🧚',2,980,4000,980],
-['iceflower','Ice Flower','❄️',3,1200,5200,1200],['aurorafruit','Aurora Fruit','🌈',3,1450,6400,1450],['sapphirepear','Sapphire Pear','💠',3,1700,7700,1700],['cometcorn','Comet Corn','☄️',3,2000,9200,2000],['nebularose','Nebula Rose','🌌',3,2400,11200,2400],['stardustmelon','Stardust Melon','✨',3,2800,13500,2800],['frostberry','Frostberry','🧊',3,3300,16000,3300],['prismorchid','Prism Orchid','💠',3,3900,19000,3900],['galaxypea','Galaxy Pea','🪐',3,4600,22500,4600],['solarbloom','Solar Bloom','☀️',3,5400,27000,5400],['voidfruit','Void Fruit','🌀',3,6500,33000,6500],['celestialapple','Celestial Apple','🍎',3,7800,40000,7800],['dreamlotus','Dream Lotus','🌺',3,9300,49000,9300],['cosmiccrown','Cosmic Crown','👑',3,11000,60000,11000]
-].map(c=>({id:c[0],name:c[1],emoji:c[2],world:c[3],cost:c[4],value:c[5],time:c[6]}));
-const upgradeDefs=[['plots','Garden Expansion','Add one plot (max 15).',180,1],['soil','Rich Soil','Crops grow 5% faster per level.',240,10],['water','Auto Watering','Small harvest bonus.',350,8],['premium','Premium Produce','Sell crops for more.',500,10],['market','Market Connections','Increase all sale prices.',750,10],['lucky','Lucky Till','Better mutation odds.',900,10],['storage','Seed Storage','Extra starting seed inventory.',450,8],['supplier','Bulk Supplier','Seed discounts.',1200,10],['clock','Garden Clock','Crops grow faster.',1500,8]];
-const mutationDefs=[['bountiful','Bountiful Harvest','Harvests sell for more.',200,8,'Harvest'],['seedling','Seedling Discount','Seeds cost less.',180,8,'Seeds'],['super','Super Sprout','Chance to gain an extra seed.',300,8,'Seeds'],['double','Double Harvest','Chance for double cash.',650,7,'Harvest'],['goldtouch','Golden Touch','Improve high-value harvests.',800,8,'Harvest'],['premiumM','Premium Mutation','Higher crop value.',900,8,'Harvest'],['ancient','Ancient Roots','Long crops pay more.',1000,8,'Growth'],['traveler','World Traveler','Small bonus in other worlds.',1200,5,'Worlds'],['cosmic','Cosmic Harvest','Boost Crystal Highlands crops.',1800,8,'Worlds'],['weather','Weather Magic','Improve weather event bonuses.',900,8,'Weather'],['rainkeeper','Rainkeeper','Rain events last longer.',750,6,'Weather'],['rainbow','Rainbow Luck','More mutation chances.',1100,8,'Weather'],['stormshield','Storm Shield','Keep bonuses during storms.',1300,5,'Weather'],['rootnetwork','Root Network','All crops grow a little faster.',1400,8,'Growth']];
-const events=[['Soft Rain','🌧️','Crops grow faster',1.35,40],['Golden Hour','🌅','Harvest value increased',1.3,35],['Petal Shower','🌸','Mutation odds increased',1.5,30],['Lucky Breeze','🍃','Seed costs reduced',1.18,35],['Moonlight','🌙','Night crops gain value',1.4,30],['Warm Sunshine','☀️','Growth boost',1.25,35],['Meteor Shower','☄️','Rare crop bonus',1.5,25],['Rainbow Sky','🌈','Harvest value increased',1.45,30],['Frosty Air','❄️','Crystal crops boosted',1.5,30],['Bee Festival','🐝','Bonus cash from harvests',1.25,35],['Misty Morning','🌫️','Growth boost',1.2,35],['Starfall','⭐','World 3 crops boosted',1.6,25],['Firefly Night','✨','Mutation odds increased',1.4,30],['Breezy Day','💨','Growth boost',1.2,30],['Flower Festival','🌺','Blossom crops boosted',1.45,35],['Harvest Moon','🌕','All harvests boosted',1.35,30]];
-const navItems=[['home','Home'],['farm','Farm'],['seeds','Seeds'],['market','Market'],['upgrades','Upgrades'],['mutations','Mutations'],['worlds','Worlds'],['events','Events'],['achievements','Achievements'],['daily','Daily Rewards'],['settings','Settings'],['accounts','Accounts & Saves'],['versions','Update Log'],['credits','Credits']];
-let state={cash:100,world:1,unlocked:1,tab:'home',plots:Array.from({length:9},()=>null),seeds:{turnip:8,carrot:3},selected:'turnip',buyQty:1,upgrades:{},mutations:{},stats:{earned:0,harvests:0,planted:0,mutations:0,worlds:1},claimed:false,settings:{compact:false},event:null,eventEnds:0,nextEvent:Date.now()+45000,notice:'Welcome to Sprout Valley! Plant a few turnips and grow your garden.'};
-const $=id=>document.getElementById(id), crop=id=>crops.find(c=>c.id===id), lvl=(id,group='upgrades')=>(state[group][id]||0), fmt=n=>Math.floor(n).toLocaleString('en-CA'), unlockedCrops=()=>crops.filter(c=>c.world<=state.unlocked), isReady=p=>!!p&&Date.now()>=p.ends;
-// Local profile saves: these are browser profiles, not secure online accounts.
-const PROFILE_KEY='sproutValleyProfiles_v1', ACTIVE_KEY='sproutValleyActiveProfile_v1';
-const defaultState=()=>({cash:100,world:1,unlocked:1,tab:'home',plots:Array.from({length:9},()=>null),seeds:{turnip:8,carrot:3},selected:'turnip',buyQty:1,upgrades:{},mutations:{},stats:{earned:0,harvests:0,planted:0,mutations:0,worlds:1},achievements:{},claimed:false,settings:{compact:false},event:null,eventEnds:0,nextEvent:Date.now()+45000,notice:'Welcome to Sprout Valley! Plant a few turnips and grow your garden.'});
-let profiles={}; let activeProfile='My Garden';
-function loadProfiles(){try{profiles=JSON.parse(localStorage.getItem(PROFILE_KEY)||'{}')||{};}catch(e){profiles={};}try{activeProfile=localStorage.getItem(ACTIVE_KEY)||'My Garden';}catch(e){activeProfile='My Garden';}if(!profiles[activeProfile])profiles[activeProfile]=JSON.parse(JSON.stringify(state));loadActiveProfile();}
-function persistProfiles(){try{localStorage.setItem(PROFILE_KEY,JSON.stringify(profiles));localStorage.setItem(ACTIVE_KEY,activeProfile);}catch(e){toast('Could not save in this browser. Check storage settings.');}}
-function saveActiveProfile(){if(!activeProfile)return;try{profiles[activeProfile]=JSON.parse(JSON.stringify(state));persistProfiles();}catch(e){/* Storage may be unavailable in private/restricted browsing. */}}
-function loadActiveProfile(){let saved=profiles[activeProfile];if(saved&&typeof saved==='object'){const base=defaultState();state={...base,...saved,stats:{...base.stats,...(saved.stats||{})},settings:{...base.settings,...(saved.settings||{})},plots:Array.isArray(saved.plots)?saved.plots:base.plots,seeds:saved.seeds||base.seeds,upgrades:saved.upgrades||{},mutations:saved.mutations||{},achievements:saved.achievements||{}};}else{state=defaultState();profiles[activeProfile]=JSON.parse(JSON.stringify(state));}try{localStorage.setItem(ACTIVE_KEY,activeProfile);}catch(e){}if(state.event&&Date.now()>=state.eventEnds){state.event=null;state.nextEvent=Date.now()+45000;}if(!state.nextEvent)state.nextEvent=Date.now()+45000;}
-function safeText(s){return String(s).replace(/[&<>\"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[ch]));}
-function createProfile(){const input=$('newProfileName');if(!input)return;const name=input.value.trim().replace(/\s+/g,' ').slice(0,24);if(!name)return notify('Enter a profile name first.');if(Object.keys(profiles).some(n=>n.toLowerCase()===name.toLowerCase()))return notify('That profile name already exists on this browser.');saveActiveProfile();activeProfile=name;state=defaultState();profiles[activeProfile]=JSON.parse(JSON.stringify(state));persistProfiles();render();toast('Garden profile created!');}
-function switchProfile(name){if(!profiles[name])return;saveActiveProfile();activeProfile=name;loadActiveProfile();render();toast('Switched garden profile.');}
-function deleteProfile(name){if(!profiles[name])return;if(Object.keys(profiles).length<=1)return notify('Keep at least one profile.');if(!confirm('Delete the local garden profile “'+name+'”? This cannot be undone.'))return;delete profiles[name];if(activeProfile===name){activeProfile=Object.keys(profiles)[0];loadActiveProfile();}persistProfiles();render();toast('Profile deleted.');}
-function resetCurrentSave(){if(!confirm('Reset all progress in this profile? This cannot be undone.'))return;state=defaultState();profiles[activeProfile]=JSON.parse(JSON.stringify(state));persistProfiles();render();toast('This garden has been reset.');}
-function toast(s){let t=$('toast');t.textContent=s;t.style.display='block';clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.style.display='none',2300)}function notify(s){state.notice=s;toast(s)}function saveCash(n){state.cash+=n;state.stats.earned+=Math.max(0,n);$('cash').textContent=fmt(state.cash)}function seedCost(c){return Math.max(1,Math.ceil(c.cost*1.2*(1-lvl('supplier')*.025)*(1-lvl('seedling','mutations')*.025)*(state.event?.name==='Lucky Breeze' ? .85 : 1)))}function growTime(c){return Math.max(8,c.time*1.25*(1-lvl('soil')*.035)*(1-lvl('clock')*.04)*(1-lvl('rootnetwork','mutations')*.025)*(state.event?.type==='growth' ? .8 : 1))}function sellValue(c){let m=.68+lvl('premium')*.08+lvl('market')*.05+lvl('bountiful','mutations')*.06+lvl('premiumM','mutations')*.055+lvl('goldtouch','mutations')*.04+lvl('traveler','mutations')*.04;if(c.world===3)m+=lvl('cosmic','mutations')*.07;if(state.event&&['value','all'].includes(state.event.type))m*=state.event.mult;if(state.event?.type==='rare'&&c.world>=2)m*=state.event.mult;if(state.event?.type==='blossom'&&c.world===2)m*=state.event.mult;if(state.event?.type==='crystal'&&c.world===3)m*=state.event.mult;return Math.floor(c.value*m)}
-function getEventType(name){if(/Rain|Sunshine|Misty|Breezy|Frosty/.test(name))return 'growth';if(/Petal|Firefly/.test(name))return 'mutation';if(/Lucky/.test(name))return 'seed';if(/Meteor|Moonlight/.test(name))return 'rare';if(/Frosty/.test(name))return 'crystal';if(/Flower Festival/.test(name))return 'blossom';if(/Golden|Rainbow|Bee|Harvest Moon/.test(name))return 'value';return 'all'}
-function beginEvent(){const e=events[Math.floor(Math.random()*events.length)];state.event={name:e[0],emoji:e[1],desc:e[2],mult:e[3],type:getEventType(e[0])};state.eventEnds=Date.now()+e[4]*1000;state.nextEvent=state.eventEnds+45000;render();toast(`${e[1]} ${e[0]} has started!`)}function endEvent(){state.event=null;state.nextEvent=Date.now()+45000;render()}
-function plant(i){let p=state.plots[i];if(p&&isReady(p)){harvest(i);return}if(p){notify('That plot is still growing.');return}let c=crop(state.selected);if(!c||!state.seeds[c.id]){notify('Choose a seed you have in your inventory.');return}state.seeds[c.id]--;state.plots[i]={crop:c.id,started:Date.now(),ends:Date.now()+growTime(c)*1000,mutated:false};state.stats.planted++;render()}
-function harvest(i){let p=state.plots[i];if(!isReady(p))return;let c=crop(p.crop);let amount=sellValue(c);if(state.event?.type==='value'||state.event?.type==='all'){}if(Math.random()<lvl('water')*.025)amount=Math.floor(amount*1.2);if(Math.random()<lvl('double','mutations')*.035)amount*=2;let mutChance=.03+lvl('lucky')*.012+lvl('rainbow','mutations')*.015;if(state.event?.type==='mutation')mutChance*=state.event.mult;let mutated=Math.random()<mutChance;if(mutated){amount=Math.floor(amount*1.35);state.stats.mutations++;}saveCash(amount);state.stats.harvests++;if(Math.random()<lvl('super','mutations')*.025)state.seeds[c.id]=(state.seeds[c.id]||0)+1;state.plots[i]=null;checkAchievements();render();toast(`${c.emoji} Harvested ${c.name} for $${fmt(amount)}${mutated?' · Mutation bonus!':''}`)}
-function harvestAll(){let n=0;state.plots.forEach((p,i)=>{if(isReady(p)){harvest(i);n++}});if(!n)notify('No crops are ready yet.');else toast('Harvested ready crops!')}
-function buy(id,qty=1){let c=crop(id);if(!c||c.world>state.unlocked)return;qty=Math.max(1,Math.min(9999,Math.floor(Number(qty)||1)));let cost=seedCost(c)*qty;if(state.cash<cost){notify(`You need $${fmt(cost)} for that many seeds.`);return}state.cash-=cost;state.seeds[id]=(state.seeds[id]||0)+qty;$('cash').textContent=fmt(state.cash);render();toast(`Bought ${qty} ${c.name} seed${qty===1?'':'s'}!`)}
-function buyUpgrade(id){let d=upgradeDefs.find(x=>x[0]===id);if(!d)return;let n=lvl(id),cost=Math.floor(d[3]*Math.pow(1.8,n));if(n>=d[4])return notify('That upgrade is maxed out.');if(state.cash<cost)return notify('Not enough Cash yet.');state.cash-=cost;state.upgrades[id]=n+1;if(id==='plots'&&state.plots.length<15)state.plots.push(null);$('cash').textContent=fmt(state.cash);render();toast(`${d[1]} upgraded!`)}function buyMutation(id){let d=mutationDefs.find(x=>x[0]===id);if(!d)return;let n=lvl(id,'mutations'),cost=Math.floor(d[3]*Math.pow(1.9,n));if(n>=d[4])return notify('That mutation is maxed out.');if(state.cash<cost)return notify('Not enough Cash yet.');state.cash-=cost;state.mutations[id]=n+1;$('cash').textContent=fmt(state.cash);render();toast(`${d[1]} improved!`)}
-function travel(id){let w=worlds.find(w=>w.id===id);if(id===4)return notify('Astral Gardens is coming soon!');if(id>state.unlocked){if(state.cash<w.unlock)return notify(`You need $${fmt(w.unlock)} to unlock ${w.name}.`);state.cash-=w.unlock;state.unlocked=id;state.stats.worlds=Math.max(state.stats.worlds,id);$('cash').textContent=fmt(state.cash);notify(`${w.name} unlocked!`)}state.world=id;document.body.className=`world-${id}`;render()}
-function sell(id){let sold=0;state.plots.forEach((p,i)=>{if(!isReady(p))return;let c=crop(p.crop);if(id!=='all'&&p.crop!==id)return;saveCash(sellValue(c));state.plots[i]=null;state.stats.harvests++;sold++});if(!sold)notify('No ready crops to sell.');else{checkAchievements();render();toast(`Sold ${sold} ready crop${sold===1?'':'s'}!`)}}
-function checkAchievements(){state.achievements=state.achievements||{};let list=[['first','First Harvest',state.stats.harvests>=1],['ten','Green Thumb',state.stats.harvests>=10],['cash1000','Pocket Full of Cash',state.stats.earned>=1000],['world2','New Horizons',state.unlocked>=2],['world3','Crystal Explorer',state.unlocked>=3],['mutate','Beautifully Strange',state.stats.mutations>=5],['hundred','Century Club',state.stats.harvests>=100]];for(let [id,name,ok] of list)if(ok&&!state.achievements[id]){state.achievements[id]=true;toast(`Achievement unlocked: ${name}!`)}}
-function nav(){ $('nav').innerHTML=navItems.map(([id,name])=>`<button class="${state.tab===id?'active':''}" onclick="switchTab('${id}')">${name}</button>`).join('') }function switchTab(id){state.tab=id;render();window.scrollTo({top:0,behavior:'smooth'})}
-function card(title,body,extra=''){return `<article class="card ${extra}"><h3>${title}</h3>${body}</article>`}function hero(title,desc){return `<section class="hero"><h2>${title}</h2><p>${desc}</p></section>`}
-function homeHTML(){let ready=state.plots.filter(p=>isReady(p)).length;let ev=state.event?`${state.event.emoji} ${state.event.name} — ${state.event.desc} · ${Math.max(0,Math.ceil((state.eventEnds-Date.now())/1000))}s left`:`Next weather event in ${Math.max(0,Math.ceil((state.nextEvent-Date.now())/1000))}s`;return hero(`Welcome to ${worlds[state.world-1].name} ${worlds[state.world-1].emoji}`,'Plant seeds, wait for your crops to grow, then harvest them for Cash. This pre-release is balanced for a slower, more satisfying journey.')+`<div class="notice">${state.notice}</div><div class="grid">${card('💵 Your Cash',`<div class="big">$${fmt(state.cash)}</div><p class="muted">Cash earned: $${fmt(state.stats.earned)}</p>`)}${card('🌱 Garden status',`<div class="big">${ready} / ${state.plots.length}</div><p class="muted">Crops ready to harvest</p><button class="btn primary" onclick="switchTab('farm')">Visit Farm</button>`)}${card('🌦️ Weather',`<p>${ev}</p><p class="muted small">Events are temporary boosts. Save seeds and use event windows wisely.</p>`,state.event?'event-active':'')}${card('🗺️ Current world',`<div class="big">${worlds[state.world-1].emoji} ${worlds[state.world-1].name}</div><p class="muted">${worlds[state.world-1].desc}</p><button class="btn" onclick="switchTab('worlds')">Explore Worlds</button>`)}</div><h2 class="section-title">Your garden at a glance</h2><div class="grid">${state.plots.map((p,i)=>p?card(`${crop(p.crop).emoji} ${crop(p.crop).name}`,isReady(p)?`<p class="price">Ready to harvest!</p><button class="btn primary" onclick="harvest(${i})">Harvest</button>`:`<p class="muted small">Growing…</p><div class="progress"><span style="width:${Math.min(100,((Date.now()-p.started)/(p.ends-p.started))*100)}%"></span></div>`):card('🪴 Empty plot','<p class="muted small">Ready for a seed.</p>') ).slice(0,4).join('')}</div>`}
-function farmHTML(){return hero('Your Farm 🪴','Choose a seed from your inventory, then plant it in an empty plot. Click a ripe crop to harvest it.')+`<div class="row"><div><span class="pill">Selected: ${crop(state.selected)?.emoji||'🌱'} ${crop(state.selected)?.name||'None'}</span> <span class="pill">Ready: ${state.plots.filter(p=>isReady(p)).length}</span></div><button class="btn primary" onclick="harvestAll()">Harvest All Ready</button></div><h2 class="section-title">Garden plots</h2><div class="grid">${state.plots.map((p,i)=>{if(!p)return `<div class="plot empty"><div><div class="crop">🪴</div><b>Plot ${i+1}</b><p class="muted small">Empty soil</p></div><button class="btn primary" onclick="plant(${i})">Plant ${crop(state.selected)?.name||'Seed'}</button></div>`;let c=crop(p.crop),ready=isReady(p),progress=Math.min(100,(Date.now()-p.started)/(p.ends-p.started)*100);return `<div class="plot"><div><div class="crop">${ready?'✨':c.emoji}</div><b>${c.name}</b><p class="muted small">${ready?'Ready to harvest':`${Math.ceil((p.ends-Date.now())/1000)}s remaining`}</p><div class="progress"><span style="width:${progress}%"></span></div></div><button class="btn ${ready?'primary':''}" onclick="plant(${i})">${ready?'Harvest':'Growing…'}</button></div>`}).join('')}</div>`}
-function seedsHTML(){let inv=Object.entries(state.seeds).filter(([id,n])=>n>0);return hero('Seed Inventory 🌰','Select the seeds you want to plant. Buy extra seeds in bulk when you are ready.')+`<div class="grid">${inv.length?inv.map(([id,n])=>{let c=crop(id);return card(`${c.emoji} ${c.name}`,`<div class="big">×${n}</div><p class="muted small">World ${c.world} · Sell value starts at $${fmt(c.value)}</p><button class="btn ${state.selected===id?'primary':''}" onclick="state.selected='${id}';render()">${state.selected===id?'Selected':'Select Seeds'}</button><button class="btn" onclick="buy('${id}',5)">Buy 5 more · $${fmt(seedCost(c)*5)}</button>`) }).join(''):'<p class="muted">No seeds in your inventory. Visit the Seed Shop.</p>'}</div><h2 class="section-title">Seed shop · Bulk buying</h2><div class="grid">${unlockedCrops().map(c=>card(`${c.emoji} ${c.name} <span class="tag">World ${c.world}</span>`,`<p class="muted small">Grow time: ${Math.ceil(growTime(c))}s</p><p>Price each: <span class="price">$${fmt(seedCost(c))}</span> · Base harvest: $${fmt(c.value)}</p><div class="tabs">${[1,5,10,25,50,100].map(n=>`<button onclick="buy('${c.id}',${n})">×${n}</button>`).join('')}</div><div class="row"><input id="qty-${c.id}" type="number" min="1" max="9999" value="1" style="width:95px"><button class="btn primary" onclick="buy('${c.id}',document.getElementById('qty-${c.id}').value)">Buy custom</button></div>`)).join('')}</div>`}
-function marketHTML(){return hero('Market 🧺','Harvested crops can be sold for Cash. Selling values are lower in this balance update, so planning matters.')+`<div class="row"><p class="muted">Ready crops: ${state.plots.filter(p=>isReady(p)).length}</p><button class="btn primary" onclick="sell('all')">Sell All Ready Crops</button></div><div class="grid">${unlockedCrops().map(c=>card(`${c.emoji} ${c.name}`,`<p>Base value: <span class="price">$${fmt(c.value)}</span></p><p>Estimated value: <span class="price">$${fmt(sellValue(c))}</span></p><p class="muted small">Sell only when the crop is ripe.</p><button class="btn" onclick="sell('${c.id}')">Sell ready ${c.name}</button>`)).join('')}</div>`}
-function upgradesHTML(){return hero('Upgrades ⚒️','Invest carefully. Upgrade costs rise with each level, so choose what helps your current goal.')+`<div class="grid">${upgradeDefs.map(([id,name,desc,base,max])=>{let n=lvl(id),cost=Math.floor(base*Math.pow(1.8,n));return card(name,`<p class="muted">${desc}</p><div class="row"><span class="pill">Level ${n}/${max}</span><span class="price">$${fmt(cost)}</span></div><button class="btn primary" ${n>=max?'disabled':''} onclick="buyUpgrade('${id}')">${n>=max?'Maxed out':'Upgrade'}</button>`) }).join('')}</div>`}
-function mutationsHTML(){let cats=['Harvest','Growth','Weather','Seeds','Worlds'];return hero('Mutation Garden 🧬','Unlock unusual traits to improve crops, weather bonuses, growth, and seeds. Mutation upgrades also get more expensive each level.')+cats.map(cat=>`<h2 class="section-title">${cat} branch</h2><div class="grid">${mutationDefs.filter(d=>d[5]===cat).map(([id,name,desc,base,max])=>{let n=lvl(id,'mutations'),cost=Math.floor(base*Math.pow(1.9,n));return card(`✨ ${name}`,`<p class="muted">${desc}</p><div class="row"><span class="pill">Level ${n}/${max}</span><span class="price">$${fmt(cost)}</span></div><button class="btn primary" ${n>=max?'disabled':''} onclick="buyMutation('${id}')">${n>=max?'Maxed out':'Improve mutation'}</button>`) }).join('')}</div>`).join('')}
-function worldsHTML(){return hero('Explore Worlds 🗺️','Each world introduces more valuable crops, longer growing times, and bigger goals. Unlocks are one-time payments.')+`<div class="grid">${worlds.map(w=>{let open=w.id<=state.unlocked,here=w.id===state.world;return card(`${w.emoji} ${w.name}`,`<p class="muted">${w.desc}</p>${w.id===4?'<span class="pill">COMING SOON</span>':`<p>${open?'Unlocked':`Unlock cost: <span class="price">$${fmt(w.unlock)}</span>`}</p><p class="small muted">${crops.filter(c=>c.world===w.id).length} crops to discover</p><button class="btn ${here?'primary':''}" onclick="travel(${w.id})">${here?'Current World':open?'Travel':'Unlock & Travel'}</button>`}`,w.id===4?'locked':'' )}).join('')}</div>`}
-function eventsHTML(){return hero('Weather & Events 🌦️','Events rotate automatically. Some boost growth, while others improve crop values or mutation chances.')+`<div class="notice">${state.event?`${state.event.emoji} <b>${state.event.name}</b> is active: ${state.event.desc}. Multiplier ×${state.event.mult.toFixed(2)}. Ends in ${Math.max(0,Math.ceil((state.eventEnds-Date.now())/1000))} seconds.`:`No event active. Next event in ${Math.max(0,Math.ceil((state.nextEvent-Date.now())/1000))} seconds.`}</div><div class="grid">${events.map(e=>card(`${e[1]} ${e[0]}`,`<p>${e[2]}</p><p class="muted small">Typical duration: ${e[4]} seconds · Multiplier ×${e[3].toFixed(2)}</p>`)).join('')}</div>`}
-function achievementsHTML(){let list=[['first','First Harvest','Harvest your first crop.'],['ten','Green Thumb','Harvest 10 crops.'],['cash1000','Pocket Full of Cash','Earn $1,000 total.'],['world2','New Horizons','Unlock World 2.'],['world3','Crystal Explorer','Unlock World 3.'],['mutate','Beautifully Strange','Get 5 mutations.'],['hundred','Century Club','Harvest 100 crops.']];return hero('Achievements 🏆','Little milestones for your growing garden.')+`<div class="grid">${list.map(([id,name,desc])=>card(`${state.achievements?.[id]?'🏆':'🔒'} ${name}`,`<p class="muted">${desc}</p><span class="pill">${state.achievements?.[id]?'Unlocked':'Not yet unlocked'}</span>`)).join('')}</div>`}
-function dailyHTML(){return hero('Daily Rewards 🎁','A simple pre-release bonus. This is session-only and will reset when you refresh.')+card('Garden Starter Gift',`<p>Claim once this session for a little boost.</p><div class="big">+$150 Cash</div><button class="btn primary" ${state.claimed?'disabled':''} onclick="if(!state.claimed){state.claimed=true;saveCash(150);render();toast('Daily reward claimed!')} ">${state.claimed?'Already claimed':'Claim reward'}</button>`) }
-function accountsHTML(){const names=Object.keys(profiles).sort((a,b)=>a.localeCompare(b));return hero('Accounts & Saves 👤','Create separate garden profiles on this browser. Each profile saves its own Cash, crops, upgrades, mutations, and world progress automatically.')+`<div class="grid">${card('🌱 Create a garden profile',`<p class="muted">Choose a nickname for this browser. Do not use your real full name, email, or password.</p><div class="row"><input id="newProfileName" maxlength="24" placeholder="Garden nickname" autocomplete="off"><button class="btn primary" onclick="createProfile()">Create profile</button></div>`)}${card('💾 Current profile',`<div class="big">${safeText(activeProfile)}</div><p class="muted">Your progress saves automatically in this browser.</p><span class="pill">${fmt(state.cash)} Cash · World ${state.world}</span><div class="divider"></div><button class="btn" onclick="resetCurrentSave()">Reset this profile</button>`)}${card('📂 Switch profiles',names.map(n=>`<div class="row"><span>${safeText(n)} ${n===activeProfile?'<span class="pill">ACTIVE</span>':''}</span><div class="row"><button class="btn ${n===activeProfile?'primary':''}" data-profile="${safeText(n)}" onclick="switchProfile(this.dataset.profile)" ${n===activeProfile?'disabled':''}>${n===activeProfile?'Selected':'Load'}</button>${names.length>1?`<button class="btn" data-profile="${safeText(n)}" onclick="deleteProfile(this.dataset.profile)">Delete</button>`:''}</div></div>`).join('<div class="divider"></div>'))}</div><div class="notice" style="margin-top:16px"><b>Important:</b> These are local profiles, not secure online accounts. They work on this browser and device only. Clearing browser data can erase them. For accounts that sync across devices, Sprout Valley needs a real online authentication/database service.</div>`}
-function settingsHTML(){return hero('Settings ⚙️','Manage your garden and browser save settings.')+card('Save system',`<p>Save system: <b>Automatic local saves enabled</b></p><p class="muted">Your active profile saves after game actions and periodically while playing. Saves stay in this browser on this device.</p><button class="btn" onclick="resetCurrentSave()">Reset current profile</button>`) }
-function versionsHTML(){return hero('Update Log 📋','What changed in each pre-release version.')+`<div class="grid">${card('v2.2.0 — Local Profiles & Saving <span class="pill">LATEST</span>',`<p class="muted small">October 23, 2026 · Pre-release</p><ul><li>Added separate garden profiles with nicknames.</li><li>Added automatic local saves after game actions and while playing.</li><li>Added profile switching, profile deletion, and reset-current-profile controls.</li><li>Saves stay in this browser and do not sync across devices.</li><li>No passwords or personal contact details are collected.</li></ul>`)}${card('v2.1.0 — Progression Balance Update',`<p class="muted small">October 23, 2026 · Pre-release</p><ul><li>Reduced crop selling values and tuned the economy for slower cash farming.</li><li>Raised seed prices to make bulk purchases a more meaningful decision.</li><li>Increased crop growing times, especially in later worlds.</li><li>Raised World 2 and World 3 unlock costs.</li><li>Increased upgrade costs to make each level feel like a milestone.</li><li>Kept weather events and mutations useful as temporary boosts.</li><li>Slower progression tuned for a more satisfying journey.</li></ul>`)}${card('v2.0.0 — Worlds & Weather',`<ul><li>Added Cash currency and Worlds 1–3.</li><li>Added World 4 Coming Soon.</li><li>Added 42 crops, bulk seed buying, and seed inventory.</li><li>Added mutations, upgrades, 16 weather events, achievements, and daily rewards.</li></ul>`)}${card('v1.2.0 — Farm Improvements',`<ul><li>Added update log and bulk seed buying.</li><li>Added inventory selection and planting.</li><li>Improved timer updates to reduce interface movement.</li></ul>`)}${card('v1.1.0 — Garden Update',`<ul><li>Expanded seed and crop shop.</li><li>Added upgrades and basic harvest feedback.</li></ul>`)}${card('v1.0.0 — First Sprout',`<ul><li>First playable farm prototype.</li><li>Plant, grow, and harvest crops.</li></ul>`)}</div>`}
-function creditsHTML(){return hero('Credits 💚','A little garden built by a small team.')+`<div class="grid">${card('🌱 Jedi Romero','<p>Creator · Game concept and direction</p>')}${card('🧪 John','<p>Playtester · Testing and feedback</p>')}${card('🤖 ChatGPT','<p>Coding Assistant · Prototype code and balancing</p>')}</div>`}
-function render(){nav();saveActiveProfile();$('profileBadge').textContent=activeProfile;$('cash').textContent=fmt(state.cash);let html={home:homeHTML,farm:farmHTML,seeds:seedsHTML,market:marketHTML,upgrades:upgradesHTML,mutations:mutationsHTML,worlds:worldsHTML,events:eventsHTML,achievements:achievementsHTML,daily:dailyHTML,settings:settingsHTML,accounts:accountsHTML,versions:versionsHTML,credits:creditsHTML};$('app').innerHTML=(html[state.tab]||homeHTML)();document.body.className=`world-${state.world}`}
-function tick(){let now=Date.now();if(state.event&&now>=state.eventEnds){state.event=null;state.nextEvent=now+45000;if(state.tab==='events'||state.tab==='home')render()}else if(!state.event&&now>=state.nextEvent)beginEvent();document.querySelectorAll('.plot').forEach((el,i)=>{let p=state.plots[i];if(!p)return;let bar=el.querySelector('.progress span');if(bar)bar.style.width=Math.min(100,(now-p.started)/(p.ends-p.started)*100)+'%';let status=el.querySelector('.muted.small');if(status)status.textContent=isReady(p)?'Ready to harvest':`${Math.max(0,Math.ceil((p.ends-now)/1000))}s remaining`;let emoji=el.querySelector('.crop');if(emoji)emoji.textContent=isReady(p)?'✨':crop(p.crop).emoji;let btn=el.querySelector('button');if(btn&&btn.textContent.includes('Growing'))btn.textContent=isReady(p)?'Harvest':'Growing…'});let ev=document.querySelector('.event-active');if(ev&&state.event){let p=ev.querySelector('p');if(p)p.textContent=`${state.event.emoji} ${state.event.name} — ${state.event.desc} · ${Math.max(0,Math.ceil((state.eventEnds-now)/1000))}s left`}}
-loadProfiles();render();setInterval(tick,500);setInterval(saveActiveProfile,5000);window.addEventListener('pagehide',saveActiveProfile);
-</script></body></html>
+const MATERIALS = {
+  Stone:   {icon:"🪨", value:2,  chance:42},
+  Iron:    {icon:"⛓️", value:8,  chance:27},
+  Coal:    {icon:"⚫", value:12, chance:17},
+  Gold:    {icon:"🟨", value:35, chance:9},
+  Diamond: {icon:"💎", value:100,chance:4},
+  Emerald: {icon:"🟢", value:150,chance:1}
+};
+
+const DEFAULT = {
+  farmCash:100, mineCash:0, seeds:0, carrots:0, harvests:0,
+  planted:Array(6).fill(null), upgrades:{}, bag:{Stone:0,Iron:0,Coal:0,Gold:0,Diamond:0,Emerald:0},
+  depth:1, deepest:1, mined:[], mineLog:["Welcome to the Deepstone Mine!"],
+  selectedMaterial:"Stone"
+};
+let state = loadGameData();
+
+function loadGameData() {
+  try {
+    const saved = localStorage.getItem("sproutValley_v230");
+    if (!saved) return structuredClone(DEFAULT);
+    const s = JSON.parse(saved);
+    return {
+      ...structuredClone(DEFAULT), ...s,
+      bag:{...DEFAULT.bag,...(s.bag||{})},
+      upgrades:{...(s.upgrades||{})},
+      planted:Array.isArray(s.planted)?s.planted:Array(6).fill(null),
+      mined:Array.isArray(s.mined)?s.mined:[],
+      mineLog:Array.isArray(s.mineLog)?s.mineLog:["Welcome to the Deepstone Mine!"]
+    };
+  } catch(e) {
+    return structuredClone(DEFAULT);
+  }
+}
+
+function saveGame() {
+  localStorage.setItem("sproutValley_v230",JSON.stringify(state));
+  updateStats();
+}
+function money(n) { return "$"+Math.floor(n).toLocaleString(); }
+function totalMaterials() {
+  return Object.values(state.bag).reduce((a,b)=>a+b,0);
+}
+function updateStats() {
+  document.getElementById("farmCash").textContent=money(state.farmCash);
+  document.getElementById("mineCash").textContent=money(state.mineCash);
+  document.getElementById("mineCash2").textContent=money(state.mineCash);
+  document.getElementById("harvestCount").textContent=state.harvests;
+  document.getElementById("materialCount").textContent=totalMaterials();
+  document.getElementById("bagCount").textContent=totalMaterials();
+  document.getElementById("deepest").textContent=state.deepest;
+  document.getElementById("levelLabel").textContent="Level "+state.depth;
+  document.getElementById("seedMessage").textContent="You have "+state.seeds+" carrot seeds.";
+  document.getElementById("seedInventory").textContent="Carrot Seeds: "+state.seeds;
+  document.getElementById("carrotMarketStock").textContent="Carrots in stock: "+state.carrots;
+  document.getElementById("plotCount").textContent=state.planted.length+" plots";
+  renderFarm();
+  renderMining();
+  renderUpgrades();
+  renderAchievements();
+}
+
+document.getElementById("navigation").addEventListener("click",e=>{
+  const btn=e.target.closest("button[data-page]");
+  if(!btn)return;
+  document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b===btn));
+  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===btn.dataset.page));
+});
+
+function buySeeds() {
+  const input=document.getElementById("seedQuantity");
+  const quantity=Math.floor(Number(input.value));
+  if(!Number.isFinite(quantity)||quantity<1||quantity>9999) {
+    alert("Choose a quantity from 1 to 9999."); return;
+  }
+  const cost=quantity*5;
+  if(state.farmCash<cost) {
+    alert("Not enough Farm Cash! You need "+money(cost)+"."); return;
+  }
+  state.farmCash-=cost;
+  state.seeds+=quantity;
+  saveGame(); updateStats();
+}
+function renderFarm() {
+  const host=document.getElementById("farmPlots");
+  host.innerHTML="";
+  state.planted.forEach((plot,i)=>{
+    const el=document.createElement("div");
+    el.className="item";
+    if(!plot) {
+      el.innerHTML='<span class="emoji">🟫</span><h3>Empty Plot</h3><p class="small">Plant a carrot seed here.</p><button '+(state.seeds<1?'disabled':'')+'>Plant seed</button>';
+      el.querySelector("button").onclick=()=>plant(i);
+    } else {
+      const seconds=Math.max(0,Math.ceil((plot.readyAt-Date.now())/1000));
+      if(seconds===0) {
+        el.innerHTML='<span class="emoji">🥕</span><h3>Carrot Ready!</h3><p>Ready to harvest.</p><button class="primary">Harvest</button>';
+        el.querySelector("button").onclick=()=>harvest(i);
+      } else {
+        el.innerHTML='<span class="emoji">🌱</span><h3>Growing carrot</h3><p>'+seconds+' seconds left</p><div class="progress"><span style="width:'+Math.max(0,100-seconds/30*100)+'%"></span></div><button disabled>Growing...</button>';
+      }
+    }
+    host.appendChild(el);
+  });
+}
+function plant(i) {
+  if(!state.seeds)return alert("You need to buy seeds first!");
+  state.seeds--;
+  state.planted[i]={readyAt:Date.now()+30000};
+  saveGame(); updateStats();
+}
+function harvest(i) {
+  const plot=state.planted[i];
+  if(!plot||Date.now()<plot.readyAt)return;
+  state.planted[i]=null;
+  state.carrots++;
+  state.harvests++;
+  saveGame(); updateStats();
+}
+function sellCarrots() {
+  if(!state.carrots)return alert("You have no carrots to sell!");
+  const amount=state.carrots;
+  state.farmCash+=amount*8;
+  state.carrots=0;
+  saveGame(); updateStats();
+}
+const UPGRADES = [
+  {id:"soil",name:"Rich Soil",icon:"🌱",desc:"Carrots grow twice as fast.",cost:100},
+  {id:"expansion",name:"Garden Expansion",icon:"🪴",desc:"Unlocks two extra garden plots.",cost:250},
+  {id:"market",name:"Market Connections",icon:"🛒",desc:"Carrots sell for $12 instead of $8.",cost:400}
+];
+function renderUpgrades() {
+  const host=document.getElementById("upgradeList");
+  host.innerHTML="";
+  UPGRADES.forEach(u=>{
+    const owned=!!state.upgrades[u.id];
+    const el=document.createElement("div");
+    el.className="item";
+    el.innerHTML='<span class="emoji">'+u.icon+'</span><h3>'+u.name+'</h3><p class="small">'+u.desc+'</p><p>'+money(u.cost)+'</p><button '+(owned?'disabled':'')+'>'+(owned?'Purchased':'Buy Upgrade')+'</button>';
+    el.querySelector("button").onclick=()=>buyUpgrade(u);
+    host.appendChild(el);
+  });
+}
+function buyUpgrade(u) {
+  if(state.upgrades[u.id])return;
+  if(state.farmCash<u.cost)return alert("Not enough Farm Cash!");
+  state.farmCash-=u.cost;
+  state.upgrades[u.id]=true;
+  if(u.id==="expansion")state.planted.push(null,null);
+  saveGame(); updateStats();
+}
+function sellCarrots() {
+  if(!state.carrots)return alert("You have no carrots to sell!");
+  const amount=state.carrots;
+  state.farmCash+=amount*(state.upgrades.market?12:8);
+  state.carrots=0;
+  saveGame(); updateStats();
+}
+function randomMaterial(depth) {
+  const pool=[];
+  Object.entries(MATERIALS).forEach(([name,m])=>{
+    let chance=m.chance;
+    if(name==="Stone")chance=Math.max(12,chance-depth*0.3);
+    if(name==="Iron")chance+=Math.min(depth*0.4,8);
+    if(name==="Coal")chance+=Math.min(depth*0.25,6);
+    if(name==="Gold")chance+=Math.min(depth*0.15,4);
+    if(name==="Diamond")chance+=Math.min(depth*0.08,3);
+    if(name==="Emerald")chance+=Math.min(depth*0.04,2);
+    for(let i=0;i<Math.max(1,Math.round(chance));i++)pool.push(name);
+  });
+  return pool[Math.floor(Math.random()*pool.length)];
+}
+function cellKey(row,col) { return state.depth+":"+row+":"+col; }
+function renderMining() {
+  const grid=document.getElementById("mineGrid");
+  grid.innerHTML="";
+  for(let r=0;r<7;r++) {
+    for(let c=0;c<7;c++) {
+      const key=cellKey(r,c);
+      const mined=state.mined.includes(key);
+      const b=document.createElement("button");
+      b.className="mine-tile "+(mined?"dug":"rock");
+      if(mined) {
+        b.textContent="·"; b.disabled=true; b.title="Already dug";
+      } else {
+        b.textContent="🪨";
+        b.title="Dig block at depth "+state.depth+", row "+(r+1);
+        b.onclick=()=>digBlock(r,c);
+      }
+      grid.appendChild(b);
+    }
+  }
+  const inv=document.getElementById("mineInventory");
+  inv.innerHTML="";
+  Object.entries(MATERIALS).forEach(([name,m])=>{
+    const qty=state.bag[name]||0;
+    const el=document.createElement("div");
+    el.className="item";
+    el.innerHTML='<span class="emoji">'+m.icon+'</span><h3>'+name+'</h3><p>Quantity: <strong>'+qty+'</strong></p><p class="small">Sell value: '+money(m.value)+' each</p><button '+(qty===0?'disabled':'')+'>Sell '+name+'</button>';
+    el.querySelector("button").onclick=()=>sellMaterial(name);
+    inv.appendChild(el);
+  });
+  const select=document.getElementById("sellMaterial");
+  const previous=select.value||state.selectedMaterial;
+  select.innerHTML="";
+  Object.keys(MATERIALS).forEach(name=>{
+    const opt=document.createElement("option");
+    opt.value=name;opt.textContent=name+" ("+(state.bag[name]||0)+")";
+    select.appendChild(opt);
+  });
+  select.value=MATERIALS[previous]?previous:"Stone";
+  select.onchange=()=>state.selectedMaterial=select.value;
+  document.getElementById("mineCash2").textContent=money(state.mineCash);
+  document.getElementById("bagCount").textContent=totalMaterials();
+}
+function digBlock(r,c) {
+  const key=cellKey(r,c);
+  if(state.mined.includes(key))return;
+  state.mined.push(key);
+  const material=randomMaterial(state.depth);
+  state.bag[material]=(state.bag[material]||0)+1;
+  addMineLog("You dug up "+MATERIALS[material].icon+" "+material+"!");
+  document.getElementById("mineMessage").textContent="You found "+material+"! You now have "+state.bag[material]+".";
+  saveGame(); updateStats();
+}
+function newMineLayer() {
+  state.depth++;
+  state.deepest=Math.max(state.deepest,state.depth);
+  document.getElementById("mineMessage").textContent="You explored deeper and reached cave level "+state.depth+".";
+  addMineLog("You descended to cave level "+state.depth+".");
+  saveGame(); updateStats();
+}
+function sellMaterial(name) {
+  const qty=state.bag[name]||0;
+  if(qty<=0)return alert("You don't have any "+name+" to sell.");
+  const total=qty*MATERIALS[name].value;
+  state.bag[name]=0;
+  state.mineCash+=total;
+  document.getElementById("mineMessage").textContent="Sold "+qty+" "+name+" for "+money(total)+" Cash V2!";
+  addMineLog("Sold "+qty+" "+name+" for "+money(total)+" Cash V2.");
+  saveGame(); updateStats();
+}
+function sellSelected() {
+  const name=document.getElementById("sellMaterial").value||state.selectedMaterial;
+  sellMaterial(name);
+}
+function sellAll() {
+  let total=0, count=0;
+  Object.entries(MATERIALS).forEach(([name,m])=>{
+    const qty=state.bag[name]||0;
+    total+=qty*m.value;
+    count+=qty;
+    state.bag[name]=0;
+  });
+  if(!count)return alert("Your mining inventory is empty!");
+  state.mineCash+=total;
+  document.getElementById("mineMessage").textContent="Sold "+count+" materials for "+money(total)+" Cash V2!";
+  addMineLog("Sold all "+count+" materials for "+money(total)+" Cash V2.");
+  saveGame(); updateStats();
+}
+function addMineLog(message) {
+  state.mineLog.unshift(message);
+  state.mineLog=state.mineLog.slice(0,30);
+  const host=document.getElementById("mineLog");
+  host.innerHTML="";
+  state.mineLog.forEach(msg=>{
+    const row=document.createElement("div");
+    row.textContent=msg;
+    host.appendChild(row);
+  });
+}
+function renderAchievements() {
+  const achievements=[
+    {name:"First Harvest",desc:"Harvest your first carrot.",done:state.harvests>=1},
+    {name:"Garden Starter",desc:"Harvest 10 carrots.",done:state.harvests>=10},
+    {name:"First Find",desc:"Collect your first mining material.",done:totalMaterials()>0||state.mineCash>0},
+    {name:"Going Deeper",desc:"Reach cave level 5.",done:state.deepest>=5},
+    {name:"Gem Hunter",desc:"Find a Diamond or Emerald.",done:state.bag.Diamond+state.bag.Emerald>0}
+  ];
+  const host=document.getElementById("achievementList");
+  host.innerHTML="";
+  achievements.forEach(a=>{
+    const el=document.createElement("div");
+    el.className="item";
+    el.innerHTML='<span class="emoji">'+(a.done?'🏆':'🔒')+'</span><h3>'+a.name+'</h3><p class="small">'+a.desc+'</p><span class="badge">'+(a.done?'Unlocked':'Not yet')+'</span>';
+    host.appendChild(el);
+  });
+}
+function exportSave() {
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;a.download="sprout-valley-save.json";a.click();
+  URL.revokeObjectURL(url);
+}
+function importSave(event) {
+  const file=event.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=()=>{
+    try {
+      const incoming=JSON.parse(reader.result);
+      if(typeof incoming.farmCash!=="number"||!incoming.bag)throw new Error();
+      state={...structuredClone(DEFAULT),...incoming,bag:{...DEFAULT.bag,...incoming.bag}};
+      saveGame();updateStats();
+      alert("Save imported!");
+    } catch(e) { alert("That save file doesn't look valid."); }
+  };
+  reader.readAsText(file);
+  event.target.value="";
+}
+function resetGame() {
+  if(!confirm("Reset all Sprout Valley progress in this browser? This cannot be undone unless you exported a save."))return;
+  state=structuredClone(DEFAULT);
+  saveGame();updateStats();
+  document.getElementById("mineMessage").textContent="Your pickaxe is ready. Choose a block to start digging!";
+}
+function startGrowthRefresh() {
+  renderFarm();
+  setTimeout(startGrowthRefresh,1000);
+}
+updateStats();
+startGrowthRefresh();
+</script>
+</body>
+</html>
